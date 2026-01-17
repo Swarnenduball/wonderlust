@@ -1,0 +1,38 @@
+<% layout("./template/boilerplate") %>
+<body>
+  <h1><%= success%></h1>
+    <!-- <form action="/listings/new" method="get">
+        <button>insert new</button>
+    </form> -->
+    <h1>HI HERE IS YOUR LISTINGS</h1> <br><br>
+
+   <div class="row  row-cols-lg-3 row-cols-md-2 row-cols-sm-1  ">
+    
+    <% for (listing of allListings) {%>
+      
+    <div class="card listing-card " >
+ <a href="/listings/<%=listing._id %>" >
+  <img src="<%=listing.image.url %>" class="card-img-top" alt="<%=listing.image.filename %>">
+   <div class="card-img-overlay">
+    <h5 class="card-title"><%=listing.title %></h5>
+    <p class="card-text"><%=listing.description %></p>
+    <p class="card-text"><%=listing.country %></p>
+  </div>
+  <div class="card-body">
+    <p class="card-text"> <b><%=listing.title %></b>
+        <br>
+        <%=listing.price.toLocaleString("en-IN") %>/night
+    
+    </p>
+  </div>
+  </a>
+</div>
+ <% } %>
+   </div>
+
+
+    <!-- <% for (listing of allListings) {%>
+        <li><a href="/listings/<%=listing._id%>"><%=listing.title%></a></li>
+        
+        <% } %> -->
+</body>
