@@ -6,7 +6,7 @@ module.exports.isLoggedIn=(req,res,next)=>{
         req.flash("error","You need to login first");
         return res.redirect("/login")
     }
-    next() 
+    next()
 }
 module.exports.redirectUrl=(req,res,next)=>{
     
