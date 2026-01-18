@@ -15,4 +15,4 @@ module.exports.redirectUrl=(req,res,next)=>{
         console.log("2222",res.locals.redirectURl)
        }
        next()
-}
+} 

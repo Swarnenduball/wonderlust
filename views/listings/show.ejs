@@ -7,13 +7,13 @@
          </div>
         
   <div class="card-body col-4 offset-2">
-    <p class="card-text">
-         
-         <%=listing.description%> <br>
-         <%=listing.price.toLocaleString("en-IN")%> <br>
-         <%=listing.location%> <br>
-         <%=listing.country%>
-    </p>
+   
+         <p class="card-text">Owner is :<%=listing.owner.username%></p>
+            <p class="card-text"> <%=listing.description%></p> <br>
+         </p><%=listing.price.toLocaleString("en-IN")%> </p>
+         <p class="card-text"><%=listing.location%> </p>
+         <p class="card-text"><%=listing.country%></p>
+   
   </div>
  
     <div class="btns offset-2">

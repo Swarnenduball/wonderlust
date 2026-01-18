@@ -38,6 +38,7 @@ router.post("/new",validListing,isLoggedIn, wrapAsync( async(req,res)=>{
        
      
        const newListing=new Listing(req.body.listing);
+       newListing.owner=req.user._id;
       await newListing.save()
        req.flash("success","a new listing is added");
        res.redirect('/listings');
@@ -48,7 +49,7 @@ router.post("/new",validListing,isLoggedIn, wrapAsync( async(req,res)=>{
 router.get("/:id", wrapAsync( async(req,res)=>{
    
         let {id}=req.params;
-        let listing= await  Listing.findById(id).populate("reviews");
+        let listing= await  Listing.findById(id).populate("reviews").populate('owner');
         if(!listing){
                 req.flash("error",("the listing you are looking for is not exist"));
                 return res.redirect("/listings");

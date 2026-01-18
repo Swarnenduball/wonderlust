@@ -14,6 +14,9 @@ async function insertData() {
     
     try{
         await listingModel.deleteMany({});
+       sample_data.data= sample_data.data.map((data)=>{
+        return  {...data,owner:"6967ac7d740e743ade769d56"}
+       } );
         await  listingModel.insertMany(sample_data.data);
         console.log("the data is succesfully inserted")
     }
