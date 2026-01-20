@@ -8,6 +8,10 @@ const  userSchema= new schema({
     email:{
         type:String,
         required:true,
+    },
+    owner:{
+        type:schema.Types.ObjectID,
+        ref:"User"
     }
 });
 userSchema.plugin(passportLocalMongoose)

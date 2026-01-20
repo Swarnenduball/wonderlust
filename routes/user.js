@@ -3,6 +3,7 @@ const user = require("../model/user");
 const wrapAsync = require("../utility/wrapasync");
 const passport = require("passport");
 const { redirectUrl } = require("../middleware");
+const { reviewSchema } = require("../listingschema/schema");
 const router=express.Router()
 
 
@@ -27,6 +28,7 @@ router.post("/signup",wrapAsync(async (req,res,next)=>{
          req.flash("error",error)
          res.redirect("/signup")
     }
+   
   
 
 }));

@@ -70,7 +70,9 @@ app.get("/",(req,res)=>{
     res.send("this is the root page")
 });
 app.get("/test",(req,res)=>{
-    res.send("this is the test page")
+    res.download('middleware.js')
+ 
+    
 })
 // app.get("/demouser",async(req,res)=>{
 //     const firstUser= new User({
