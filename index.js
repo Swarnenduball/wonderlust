@@ -69,19 +69,8 @@ app.use("/",userRout);
 app.get("/",(req,res)=>{
     res.send("this is the root page")
 });
-app.get("/test",(req,res)=>{
-    res.download('middleware.js')
- 
-    
-})
-// app.get("/demouser",async(req,res)=>{
-//     const firstUser= new User({
-//         username:"@eagleEyeds",
-//         email:"1234@gmail.com"
-//     });
-//    let user1= await User.register(firstUser,"helloWorld");
-//    res.send(user1)
-// });
+
+
 
 // error handeling middle ware
 app.use((req,res,next)=>{
