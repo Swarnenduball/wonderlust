@@ -35,7 +35,7 @@ module.exports.loginUser=async(req,res)=>{
    req.flash("success","Welcome back to wonder lust");
   
    console.log( res.locals.redirectUrl)
-   let renderPage= res.locals.redirectURl|| "/listings"
+   let renderPage= res.locals.redirectUrl|| "/listings"
 
    
    res.redirect(renderPage)

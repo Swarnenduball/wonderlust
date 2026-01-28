@@ -19,6 +19,7 @@ const User=require("./model/user");
 const passport=require("passport");
 const localStrategy=require("passport-local");
 
+
 let sessionOptions={
     secret:"secretecode",
     resave:false,

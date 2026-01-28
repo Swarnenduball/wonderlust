@@ -5,13 +5,24 @@ const wrapAsync=require("../utility/wrapasync");
 const ExpressError=require("../utility/expressError.js")
 const {listingSchema,reviewSchema}=require("../listingschema/schema")
 const {isLoggedIn, redirectURl, isOwner, validListing}=require("../middleware")
-const listingController=require("../controller/listing")
+const listingController=require("../controller/listing");
+if(process.env.NODE_ENV!="production"){
+  require("dotenv").config()
+}
+
+const multer=require("multer");
+const { eventNames } = require("../model/review.js");
+const cloudinary=require("cloudinary").v2
+const {storage}=require("../cloudConfig.js")
+const upload=multer({storage});
+
+
 //index rout 
 router.get("/",wrapAsync(listingController.index ));
 //new insert rout 
 router.route("/new")
 .get(isLoggedIn, wrapAsync( listingController.newListingForm))
-.post(validListing,isLoggedIn, wrapAsync(listingController.newListing))
+.post(validListing,isLoggedIn,upload.single("listing[image][url]"), wrapAsync(listingController.newListing))
 
 //Show rout 
 router.get("/:id", wrapAsync(listingController.showListings));
