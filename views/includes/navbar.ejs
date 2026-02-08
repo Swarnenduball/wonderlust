@@ -1,36 +1,53 @@
-
-    <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top">
+<style>
+  .search input{
+    padding: .8rem 5rem;
+    border-radius: 25px;
+  }
+   .search button{
+    padding: 0 2rem;
+    border-radius: 25px;
+  }
+</style>
+    <nav class="navbar navbar-expand-md bg-body-tertiary border-bottom sticky-top mb-5">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"><i class="fa-regular fa-compass"></i></a>
+    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
+       
         <li class="nav-item">
           <a class="nav-link" href="/listings">All Listings</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/listings/new">Add New</a>
-        </li>
+        
         
       </ul>
+      <div class="search ms-auto"><nav class="navbar bg-body-tertiary">
+  <div class="container-fluid">
+    <form class="d-flex" role="search">
+      <input class="form-control me-2" type="search" placeholder="Enter your desitination" aria-label="Search"/>
+      <button class="btn btn-outline-success" type="submit">Find</button>
+    </form>
+  </div>
+</nav></div>
       <!-- second part of the nav bar -->
        <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link w-home" href="/listings/new" >Become owner</a>
+        </li>
         <% if (!currUser) { %>
           <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/login">Login</a>
+          <a class="nav-link active" aria-current="page" href="/login">
+           <b> Login</b></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/signup">signup</a>
+          <a class="nav-link" href="/signup"><b>signup</b></a>
         </li>
         <% } %>
         <% if (currUser) { %>
           <li class="nav-item">
-          <a class="nav-link" href="/logout">logout</a>
+          <a class="nav-link" href="/logout"> <b>logout </b></a>
         </li>
         <% } %>
        

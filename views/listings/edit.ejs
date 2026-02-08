@@ -2,7 +2,8 @@
 <body>
       <div class="rows">
         <div class="col col-8 offset-2">
-    <form action="/listings/<%=  listing.id%>/edit?_method=PUT" class="needs-validation" method="post" novalidate>
+    <form action="/listings/<%=  listing.id%>/edit?_method=PUT" class="needs-validation" 
+      method="post" novalidate enctype="multipart/form-data">
       
         <h1>Edit this Listing</h1>
     
@@ -17,15 +18,15 @@
     <textarea name="listing[description]" rows="4" class="form-control" required><%=  listing.description%></textarea>
 
     </div>
+    
+       <div class="mb-3">
+        <img src="<%= n_img_url %>" alt="">
+       </div>
     <div class="mb-3">
-       <label for="img-url" class="form-label">Image URL</label>
-    <input type="text" name="listing[image][url]" class="form-control" id="img-url" value="<%=  listing.image.url%>">
+       <label for="img-url" class="form-label">Image</label>
+    <input type="file" name="listing[image][url]" class="form-control" id="img-url" value="<%=  listing.image.url%>">
        </div>
 
-       <div class="mb-3">
-       <label for="filename" class="form-label">Image filename</label>
-    <input type="text" id="filename" class="form-control" name="listing[image][filename]" value="<%=  listing.image.filename%>">
-       </div>
        <div class="mb-3">
      <label for="price" class="form-label" >Price (₹)</label>
     <input type="number" name="listing[price]" class="form-control" id="price" value="<%=  listing.price%>" required>

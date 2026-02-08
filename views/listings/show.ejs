@@ -1,5 +1,13 @@
 <% layout("./template/boilerplate") %>
 <body>
+  <style>
+    /* map styling */
+#map{
+    height: 400px;
+    width: 80vh;
+}
+ 
+  </style>
     <div class="rows">
         <div class="col-7 offset-2">
             <h1 class="mb-2"><%=listing.title%></h1>
@@ -104,6 +112,55 @@
       <% }%>
    
    </div>
+   <div class="col-7 offset-2 mb-2 mt-5">
+    <h4>Your Destination </h4>
+     <div id="map"></div>
+   </div>
+   
+ <div class="col-7 offset-2 mb-2 mt-5">
+  <h4>Your Destination</h4>
+  <div id="map"></div>
+</div>
+
+<script>
+  console.log("Script loaded!");
+  
+  // Pass server data to JavaScript using EJS
+  const mapData = <%- JSON.stringify(listing.geometry) %>
+  
+  console.log("Map data:", mapData);
+  
+  const coordinates = mapData?.coordinates || [];
+  console.log("Coordinates:", coordinates);
+  console.log("Coordinates length:", coordinates.length);
+
+  if (coordinates.length === 2) {
+    const [lng, lat] = coordinates;
+    console.log("Lat:", lat, "Lng:", lng);
+    
+    const mapDiv = document.getElementById('map');
+    console.log("Map div found:", mapDiv);
+    
+    const map = L.map('map').setView([lat, lng], 15);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap'
+    }).addTo(map);
+
+    L.marker([lat, lng])
+  .addTo(map)
+  .bindPopup("<b><%=listing.title%></b><br><%=listing.location%>")
+  .openPopup(); // Opens popup automatically
+    
+    console.log("Map should be loaded!");
+  } else {
+    console.error("Invalid coordinates:", coordinates);
+  }
+</script>
+
+
+    
 </body>
 
 

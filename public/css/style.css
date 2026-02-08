@@ -20,6 +20,12 @@ a{
 .nav-link{
     color: #222222 !important;
 }
+
+.w-home:hover{
+ background-color: rgba(0, 0, 0, 0.355);
+ border-radius: 20px;
+
+}
 .fa-compass{
     color: #fe424d;
     font-size: 2rem;
@@ -96,3 +102,4 @@ a{
 .show-img{
     height: 50vh;
 }
+

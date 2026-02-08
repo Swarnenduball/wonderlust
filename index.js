@@ -14,23 +14,40 @@ const listingsRout= require("./routes/listing");
 const reviewRout= require("./routes/review");
 const userRout= require("./routes/user");
 const session=require("express-session");
+const MongoStore = require("connect-mongo");
+
 const flash=require("connect-flash");
 const User=require("./model/user");
 const passport=require("passport");
 const localStrategy=require("passport-local");
+if (process.env.NODE_ENV !== "production") {
+    require('dotenv').config();
+}
+const dbUrl=process.env.ATLASDB_URL ;
 
 
-let sessionOptions={
-    secret:"secretecode",
-    resave:false,
-    saveUninitialized:false,
-    cookie:{
-        expire: Date.now()+7*24*60*60*1000,
-        maxAge:7*24*60*60*100,
-        httpOnly:true
+// Create the MongoStore properly
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    crypto: {
+        secret: "secretecode"  // Use environment variable in production!
+    },
+    touchAfter: 24 * 60 * 60
+});
+
+let sessionOptions = {
+    secret: "secretecode",  // Use environment variable in production!
+    // store: store,  // Now it's a proper MongoStore instance
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 7 * 24 * 60 * 60 * 1000,  // 7 days
+        httpOnly: true
     }
 }
+
 app.use(session(sessionOptions));
+
 app.use(flash());
 app.use(passport.initialize());  //for initilize the passort
 app.use(passport.session()); //so that it can move one page to another page without relogin
@@ -51,13 +68,14 @@ app.use((req,res,next)=>{
     res.locals.currUser=req.user;
     next()
 })
+  
 main()
 .then(res=> console.log("the connection is success"))
 .catch(err=>console.log(err));
 
-
 async function main(){
-    await mongoose.connect("mongodb://127.0.0.1:27017/wanderlust");
+ 
+    await mongoose.connect(dbUrl);
 }
 app.use("/listings/:id/reviews",reviewRout);
 app.use("/listings",listingsRout);
