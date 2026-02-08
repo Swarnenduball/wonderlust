@@ -37,7 +37,7 @@ const store = MongoStore.create({
 
 let sessionOptions = {
     secret: "secretecode",  // Use environment variable in production!
-    // store: store,  // Now it's a proper MongoStore instance
+    store: store,  // Now it's a proper MongoStore instance
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -86,7 +86,7 @@ app.use("/",userRout);
 
 
 app.get("/",(req,res)=>{
-    res.send("this is the root page")
+    res.redirect('/listings')
 });
 
 
